@@ -18,10 +18,10 @@ public class Main {
             @Override
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()){
-                    case KeyEvent.VK_UP -> content.shiftY(-step);
-                    case KeyEvent.VK_DOWN -> content.shiftY(step);
-                    case KeyEvent.VK_RIGHT -> content.shiftX(step);
-                    case KeyEvent.VK_LEFT -> content.shiftX(-step);
+                    case KeyEvent.VK_UP -> content.shiftY(-step, frame.getBounds().height);
+                    case KeyEvent.VK_DOWN -> content.shiftY(step, frame.getBounds().height);
+                    case KeyEvent.VK_RIGHT -> content.shiftX(step, frame.getBounds().width);
+                    case KeyEvent.VK_LEFT -> content.shiftX(-step, frame.getBounds().width);
                 }
             }
         });

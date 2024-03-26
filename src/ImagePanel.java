@@ -34,23 +34,29 @@ public class ImagePanel extends JPanel {
 
     int x=0,y=0;
 
-    boolean checkBorderX() {
-        return (this.x < (bounds.getMinX())) || (this.x > (bounds.getWidth() - width));
+    boolean checkBorderXL() {
+        return (this.x < (bounds.getMinX()));
     }
-    boolean checkBorderY(){
-        return (this.y < (bounds.getMinY())) || (this.y > (bounds.getHeight() - height));
-    }
+    boolean checkBorderXR() { return (this.x > (bounds.getWidth() - width)); }
+    boolean checkBorderYL(){ return (this.y < (bounds.getMinY())); }
+    boolean checkBorderYR() {return (this.y > (bounds.getHeight() - height));}
 
-    public void shiftX(int x) {
-        if(checkBorderX())
-            x = -x;
+    public void shiftX(int x, int width) {
+        if(checkBorderXR())
+            x = -this.x;
+        if(checkBorderXL())
+            x = width - this.width;
+            //x = -x;
         this.x += x;
         repaint();
     }
 
-    public void shiftY(int y) {
-        if(checkBorderY())
-            y = -y;
+    public void shiftY(int y, int height) {
+        if(checkBorderYR())
+            y = -this.y;
+        if(checkBorderYL())
+            y = height - this.height;
+            //y = -y;
         this.y += y;
         repaint();
     }
