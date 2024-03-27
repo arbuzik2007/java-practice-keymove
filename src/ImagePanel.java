@@ -33,7 +33,12 @@ public class ImagePanel extends JPanel {
     }
 
     int x=0,y=0;
-
+    int speed = 1;
+    final int sprint = 2;
+    boolean isSprint = false;
+    public void setSprint(boolean sprint) {
+        isSprint = sprint;
+    }
     boolean checkBorderXL() {
         return (this.x < (bounds.getMinX()));
     }
@@ -47,7 +52,7 @@ public class ImagePanel extends JPanel {
         if(checkBorderXL())
             x = width - this.width;
             //x = -x;
-        this.x += x;
+        this.x = (this.x + x) * (isSprint ? speed * sprint : speed);
         repaint();
     }
 
@@ -57,7 +62,7 @@ public class ImagePanel extends JPanel {
         if(checkBorderYL())
             y = height - this.height;
             //y = -y;
-        this.y += y;
+        this.y = (this.y + y) * (isSprint ? speed * sprint : speed);
         repaint();
     }
 

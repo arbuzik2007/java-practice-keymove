@@ -11,10 +11,19 @@ public class Main {
         return var2;
     }
     public static void main(String[] args) {
-        JFrame frame = getFrame(500, 500);
+        JFrame frame = getFrame(500*2, 500*2);
         ImagePanel content = new ImagePanel("resources/sprite.jpg", frame.getBounds());
         int step = 50;
+
         frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+                    content.setSprint(false);
+                }
+                super.keyReleased(e);
+            }
+
             @Override
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()){
@@ -22,7 +31,9 @@ public class Main {
                     case KeyEvent.VK_DOWN -> content.shiftY(step, frame.getBounds().height);
                     case KeyEvent.VK_RIGHT -> content.shiftX(step, frame.getBounds().width);
                     case KeyEvent.VK_LEFT -> content.shiftX(-step, frame.getBounds().width);
+                    case KeyEvent.VK_SHIFT -> content.setSprint(true);
                 }
+                super.keyPressed(e);
             }
         });
         frame.setContentPane(content);
